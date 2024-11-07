@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aspirantômetro</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f3f4f6;
+        }
+        #contador-container {
+            text-align: center;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        #contador-container h1 {
+            font-size: 2.5rem;
+            color: red;
+            margin: 0;
+        }
+        #contador {
+            font-size: 2rem;
+            margin: 10px 0;
+        }
+        #porcentagem {
+            font-size: 1.2rem;
+            color: #555;
+        }
+        .estrela {
+            position: absolute;
+            right: -20px;
+            top: 20px;
+            font-size: 2rem;
+            color: gold;
+        }
+    </style>
+</head>
+<body>
+    <div id="contador-container">
+        <h1>ASPIRANTÔMETRO</h1>
+        <div id="contador"></div>
+        <div id="porcentagem"></div>
+        <span class="estrela">⭐</span>
+    </div>
+
+    <script>
+        function atualizarAspirantometro() {
+            const dataInicial = new Date("2023-08-07");
+            const dataFinal = new Date("2024-09-26");
+            const hoje = new Date();
+
+            // Calcula o número total de dias e o dia atual
+            const totalDias = Math.ceil((dataFinal - dataInicial) / (1000 * 60 * 60 * 24));
+            const diasPassados = Math.ceil((hoje - dataInicial) / (1000 * 60 * 60 * 24));
+            const porcentagem = ((diasPassados / totalDias) * 100).toFixed(2);
+
+            // Exibe o dia atual e a porcentagem de progresso
+            document.getElementById("contador").textContent = `Dia ${diasPassados} de ${totalDias}`;
+            document.getElementById("porcentagem").textContent = `Progresso: ${porcentagem}%`;
+        }
+
+        atualizarAspirantometro();
+        setInterval(atualizarAspirantometro, 86400000); // Atualiza a cada 24 horas
+    </script>
+</body>
+</html>
